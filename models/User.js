@@ -9,7 +9,21 @@ const userSchema = new Schema({
   phone : String,
   email : String,
   admin : { type: Boolean, default: false },
-  firstVisit : { type: Boolean, default: true }
+  firstVisit : { type: Boolean, default: true },
+  currentOccupation: String,
+  annualIncome: Number,
+  totalSavings: Number,
+  totalInvested: Number,
+  netWorth: Number,
+  monthlySavings: Number,
+  monthlyInvested: Number,
+  annualSavings: Number,
+  annualInvested: Number,
+  monthlyExpenses: Number,
+  yearlyExpenses: Number,
+  location: String,
+  timeUntilRetirement: String,
+  desiredRetirementAge: Number
 });
 
 const User = mongoose.model('User', userSchema);

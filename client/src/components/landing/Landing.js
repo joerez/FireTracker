@@ -11,7 +11,7 @@ class Landing extends Component {
         <h1>FireTracker</h1>
         <h3>Fire: Financial Independence, Retire Early.</h3>
         <h3>Track your progress to FIRE!</h3>
-        <Link to={this.props.auth ? '/dashboard' : '/auth/google'}>{this.props.auth ? 'Go to dashboard' : 'Try for free'}</Link>
+        {this.props.auth ? <Link to="/dashboard">Go to dashboard</Link> : <a href="/auth/google">Try for free</a>}
       </div>
     )
   }

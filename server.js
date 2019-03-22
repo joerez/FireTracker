@@ -7,7 +7,7 @@ mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/firetracker",
   { useNewUrlParser: true },
   () => {
-    console.log("Connected to Skedge Database");
+    console.log("Connected to FireTracker Database");
   }
 );
 
