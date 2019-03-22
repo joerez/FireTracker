@@ -3,9 +3,13 @@ const app = express();
 const port = process.env.PORT || '5000';
 
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/mernstackapp', () => {
-  console.log("Connected to Database");
-});
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/firetracker",
+  { useNewUrlParser: true },
+  () => {
+    console.log("Connected to Skedge Database");
+  }
+);
 
 
 const authKeys = require('./config/keys');

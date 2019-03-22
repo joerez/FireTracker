@@ -35,9 +35,20 @@ module.exports = (passport, app, User) => {
 
 
   app.get('/api/current_user', (req, res) => {
-      res.send(req.user);
+    res.send(req.user);
   })
 
-
+  app.post('/api/user/setup', (req, res) => {
+    User.findById(req.user._id).then((user) => {
+      user.name = req.body.name;
+      user.phone = req.body.phone;
+      user.firstVisit = false;
+      user.save().then(() => {
+        res.send({status: 'success', message: 'Your account details have been saved!'});
+      })
+    }).catch((err) => {
+      console.log(err);
+    })
+  })
 
 }

@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { PropsRoute, PublicRoute, PrivateRoute } from 'react-router-with-props';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-
-import axios from 'axios';
 
 import './styles.css';
 
@@ -28,8 +25,6 @@ class App extends Component {
         <BrowserRouter>
             <div>
               <Header />
-              <div className="container">
-              </div>
               <Route exact path="/" component={Landing} />
               <Route exact path="/dashboard" component={Dashboard} />
             </div>
@@ -44,6 +39,3 @@ function mapStateToProps({ auth }) {
 }
 
 export default connect(mapStateToProps, actions)(App);
-
-
-// export default connect(null, actions)(App);

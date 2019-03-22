@@ -3,13 +3,13 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
   name : String,
-  business : String,
   googleId : String,
   accessToken : String,
   refreshToken : String,
   phone : String,
   email : String,
-  admin : { type: Boolean, default: false }
+  admin : { type: Boolean, default: false },
+  firstVisit : { type: Boolean, default: true }
 });
 
 const User = mongoose.model('User', userSchema);
