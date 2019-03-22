@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
   render() {
     return (
-      <div className="nav">Header</div>
+      <div className="nav">
+        <Link to={this.props.auth ? '/dashboard' : '/'} className="nav-brand">FireTracker</Link>
+        <Link to="/auth/google" className="nav-login">Login</Link>
+      </div>
     )
   }
 }
 
-export default Header
+function mapStateToProps({ auth }) {
+  return { auth };
+}
+
+export default connect(mapStateToProps)(Header);
