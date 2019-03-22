@@ -40,12 +40,16 @@ module.exports = (passport, app, User) => {
 
   app.post('/api/user/setup', (req, res) => {
     User.findById(req.user._id).then((user) => {
-      user.name = req.body.name;
-      user.phone = req.body.phone;
-      user.firstVisit = false;
-      user.save().then(() => {
-        res.send({status: 'success', message: 'Your account details have been saved!'});
-      })
+      if (req.body.name && req.body.phone) {
+        user.name = req.body.name;
+        user.phone = req.body.phone;
+        user.firstVisit = false;
+        user.save().then(() => {
+          res.send({status: 'success', message: 'Your account details have been saved!'});
+        })
+      } else {
+        res.send({status: 'error', message: 'Error: Please fill out all required fields'});
+      }
     }).catch((err) => {
       console.log(err);
     })

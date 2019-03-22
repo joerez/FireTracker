@@ -8,7 +8,7 @@ class Header extends Component {
     return (
       <div className="nav">
         <Link to={this.props.auth ? '/dashboard' : '/'} className="nav-brand">FireTracker</Link>
-        <Link to="/auth/google" className="nav-login">Login</Link>
+        {this.props.auth ? null : <a href="/auth/google" className="nav-login">Login</a>}
       </div>
     )
   }

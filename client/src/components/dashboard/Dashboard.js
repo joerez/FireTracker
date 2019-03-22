@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 
 import { fetchUser } from '../../actions';
-
+import Alert from '../alert/Alert';
 
 import FirstVisit from './firstVisit/FirstVisit';
+
 
 class Dashboard extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class Dashboard extends Component {
     }
 
     this.detailsUpdated = this.detailsUpdated.bind(this);
+    this.toggleDetails = this.toggleDetails.bind(this);
   }
 
   componentDidMount() {
@@ -24,7 +26,7 @@ class Dashboard extends Component {
 
   renderError() {
     if (this.state.message) {
-      return <div>{this.state.message}</div>
+      return <Alert message={this.state.message} />
     }
   }
 
@@ -32,10 +34,14 @@ class Dashboard extends Component {
     this.setState({updateDetails: false, message: message})
   }
 
-  renderFields() {
+  toggleDetails() {
+    this.setState({updateDetails: !this.state.updateDetails});
+  }
+
+  renderUpdateDetails() {
     if (this.state.updateDetails) {
       return (
-        <FirstVisit detailsUpdated={this.detailsUpdated}/>
+        <FirstVisit detailsUpdated={this.detailsUpdated} toggleDetails={this.toggleDetails} />
       )
     }
   }
@@ -44,7 +50,10 @@ class Dashboard extends Component {
     return (
       <div className="dashboard">
         {this.renderError()}
-        {this.renderFields()}
+        {this.renderUpdateDetails()}
+
+        <button onClick={this.toggleDetails}>Update details</button>
+
       </div>
     )
   }
