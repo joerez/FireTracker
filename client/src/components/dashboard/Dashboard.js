@@ -18,6 +18,7 @@ class Dashboard extends Component {
 
     this.detailsUpdated = this.detailsUpdated.bind(this);
     this.toggleDetails = this.toggleDetails.bind(this);
+    this.resetErrors = this.resetErrors.bind(this);
   }
 
   componentDidMount() {
@@ -26,8 +27,12 @@ class Dashboard extends Component {
 
   renderError() {
     if (this.state.message) {
-      return <Alert message={this.state.message} />
+      return <Alert message={this.state.message} resetErrors={this.resetErrors}/>
     }
+  }
+
+  resetErrors() {
+    this.setState({message: ''});
   }
 
   detailsUpdated(message) {
