@@ -36,11 +36,17 @@ class Dashboard extends Component {
   }
 
   detailsUpdated(message) {
-    this.setState({updateDetails: false, message: message})
+    this.setState({message: message})
   }
 
   toggleDetails() {
-    this.setState({updateDetails: !this.state.updateDetails});
+    if (this.state.updateDetails) {
+      setTimeout(() => {
+        this.setState({updateDetails: false});
+      }, 150);
+    } else {
+      this.setState({updateDetails: true});
+    }
   }
 
   renderUpdateDetails() {

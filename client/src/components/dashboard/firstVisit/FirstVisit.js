@@ -8,7 +8,8 @@ class FirstVisit extends Component {
     super(props)
 
     this.state = {
-      name: 't',
+      exit: false,
+      name: '',
       phone: ''
     }
 
@@ -16,6 +17,7 @@ class FirstVisit extends Component {
     this.handlePhone = this.handlePhone.bind(this);
     this.updateProfile = this.updateProfile.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.exitModal = this.exitModal.bind(this);
   }
 
   handleName(e) {
@@ -40,15 +42,22 @@ class FirstVisit extends Component {
   updateProfile() {
     axios.post('/api/user/setup', this.state).then((res) => {
       this.props.detailsUpdated(res.data.message);
+      this.props.toggleDetails();
+      this.setState({exit: true});
     })
+  }
+
+  exitModal() {
+    this.props.toggleDetails();
+    this.setState({exit: true});
   }
 
   render() {
     return (
       <div>
-        <div onClick={this.props.toggleDetails} className="backdrop-overlay"></div>
-        <div onClick={(e) => e.stopPropagation()} className="first-visit-modal">
-          <div onClick={this.props.toggleDetails} className="modal-x">X</div>
+        <div onClick={this.exitModal} className={ this.state.exit ? 'backdrop-overlay exit' : 'backdrop-overlay enter'}></div>
+        <div onClick={(e) => e.stopPropagation()} className={this.state.exit ? 'first-visit-modal exit' : 'first-visit-modal enter'}>
+          <div onClick={this.exitModal} className="modal-x">X</div>
           <h2>Welcome to FireTracker!</h2>
           <h3>Please set up your profile!</h3>
 
@@ -128,7 +137,7 @@ class FirstVisit extends Component {
 
           <div>
             <button onClick={this.updateProfile}>Update</button>
-            <button onClick={this.props.toggleDetails}>Cancel</button>
+            <button onClick={this.exitModal}>Cancel</button>
 
 
           </div>

@@ -16,14 +16,18 @@ body, html {
   justify-content: flex-start;
 }
 
-.nav-brand {
-  color: white;
-  text-decoration: none;
-}
 
 .nav-login {
   position: absolute;
   right: 1rem;
+}
+
+.nav-item {
   color: white;
   text-decoration: none;
+  transition: all 150ms;
+}
+
+.nav-item:hover {
+  transform: scale(1.05);
 }

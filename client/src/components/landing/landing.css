@@ -5,3 +5,12 @@
   align-items: center;
   width: 100%;
 }
+
+.larger-letter {
+  font-size: 1.6rem;
+  color: #c0392b;
+}
+
+.red {
+  color: #c0392b;
+}
