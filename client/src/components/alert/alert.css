@@ -1,4 +1,27 @@
 @keyframes alertFade {
+
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  5% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+  7% {
+    transform: translateY(2px);
+  }
+
+  9% {
+    transform: translateY(2px);
+  }
+
+  11% {
+    transform: translateY(0px);
+  }
+
   80% {
     display: flex;
     opacity: 1;
@@ -31,4 +54,5 @@
   animation-fill-mode: forwards;
   animation-timing-function: ease-out;
   animation-iteration-count: 1;
+  cursor: pointer;
 }
