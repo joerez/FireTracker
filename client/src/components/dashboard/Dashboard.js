@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import { fetchUser } from '../../actions';
 import Alert from '../alert/Alert';
+import SideNav from '../sidenav/SideNav';
 
 import FirstVisit from './firstVisit/FirstVisit';
 
@@ -42,9 +43,11 @@ class Dashboard extends Component {
   toggleDetails() {
     if (this.state.updateDetails) {
       setTimeout(() => {
+        this.props.fetchUser();
         this.setState({updateDetails: false});
       }, 150);
     } else {
+      this.props.fetchUser();
       this.setState({updateDetails: true});
     }
   }
@@ -52,19 +55,22 @@ class Dashboard extends Component {
   renderUpdateDetails() {
     if (this.state.updateDetails) {
       return (
-        <FirstVisit detailsUpdated={this.detailsUpdated} toggleDetails={this.toggleDetails} />
+        <FirstVisit detailsUpdated={this.detailsUpdated} toggleDetails={this.toggleDetails} user={this.props.auth} />
       )
     }
   }
 
   render() {
     return (
-      <div className="dashboard">
-        {this.renderError()}
-        {this.renderUpdateDetails()}
+      <div className="main">
+        <SideNav />
+        <div className="dashboard">
+          {this.renderError()}
+          {this.renderUpdateDetails()}
 
-        <button onClick={this.toggleDetails}>Update details</button>
+          <button className="absolute-settings-btn" onClick={this.toggleDetails}>Update details</button>
 
+        </div>
       </div>
     )
   }
