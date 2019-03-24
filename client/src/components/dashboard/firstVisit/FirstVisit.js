@@ -103,7 +103,7 @@ class FirstVisit extends Component {
 
             <div className="input-group">
               <label>Current Amount Invested<span className="required-asterisk">*</span></label>
-              <input name="totalInvested" placeholder="1000" onChange={this.handleInputChange} value={this.totalInvested} />
+              <input name="totalInvested" placeholder="1000" onChange={this.handleInputChange} value={this.state.totalInvested} />
             </div>
 
           </div>
