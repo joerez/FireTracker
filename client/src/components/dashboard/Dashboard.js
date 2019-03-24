@@ -71,7 +71,7 @@ class Dashboard extends Component {
           <button className="absolute-settings-btn" onClick={this.toggleDetails}>Update details</button>
 
           <div className="dashboard-modules">
-            <MainStats />
+            <MainStats user={this.props.auth}/>
           </div>
         </div>
       </div>
