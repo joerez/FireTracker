@@ -37,7 +37,7 @@
 
 .alert {
   position: absolute;
-  top: 2rem;
+  top: -1rem;
   left: 0;
   right: 0;
   margin-left: auto;
@@ -57,4 +57,5 @@
   animation-timing-function: ease-out;
   animation-iteration-count: 1;
   cursor: pointer;
+  z-index: 100000;
 }

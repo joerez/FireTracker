@@ -23,7 +23,7 @@ const userSchema = new Schema({
   yearlyExpenses: Number,
   location: String,
   timeUntilRetirement: String,
-  birthday: String,
+  birthYear: String,
   desiredRetirementAge: Number
 });
 
