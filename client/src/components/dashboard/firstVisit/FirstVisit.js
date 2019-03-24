@@ -19,7 +19,7 @@ class FirstVisit extends Component {
       monthlyInvested: user.monthlyInvested,
       monthlyExpenses: user.monthlyExpenses,
       location: user.location,
-      birthday: user.birthday,
+      birthYear: user.birthYear,
       desiredRetirementAge: user.desiredRetirementAge
     }
 
@@ -74,7 +74,7 @@ class FirstVisit extends Component {
           <div className="form-group">
             <div className="input-group">
               <label>Name<span className="required-asterisk">*</span></label>
-              <input type="text" placeholder="name" onChange={this.handleName} value={this.state.name} />
+              <input type="text" placeholder="Name" onChange={this.handleName} value={this.state.name} />
             </div>
 
             <div className="input-group">
@@ -133,8 +133,8 @@ class FirstVisit extends Component {
             </div>
 
             <div className="input-group">
-              <label>Birthday<span className="required-asterisk">*</span></label>
-              <input type="text" name="birthday" placeholder="12/31/1990" onChange={this.handleInputChange} value={this.state.birthday} />
+              <label>Birth Year<span className="required-asterisk">*</span></label>
+              <input type="text" name="birthYear" placeholder="1990" onChange={this.handleInputChange} value={this.state.birthYear} />
             </div>
 
             <div className="input-group">
@@ -145,12 +145,11 @@ class FirstVisit extends Component {
 
           </div>
 
-          <div>
-            <button onClick={this.updateProfile}>Update</button>
-            <button onClick={this.exitModal}>Cancel</button>
-
-
+          <div className="first-visit-btns">
+            <button className="btn-primary" onClick={this.updateProfile}>Update</button>
+            <button className="btn-cancel" onClick={this.exitModal}>Cancel</button>
           </div>
+
           <p>Feel free to fill out non-required inputs later</p>
 
         </div>

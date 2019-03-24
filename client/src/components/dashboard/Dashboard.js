@@ -6,7 +6,7 @@ import Alert from '../alert/Alert';
 import SideNav from '../sidenav/SideNav';
 
 import FirstVisit from './firstVisit/FirstVisit';
-
+import MainStats from './mainstats/MainStats';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -70,6 +70,9 @@ class Dashboard extends Component {
 
           <button className="absolute-settings-btn" onClick={this.toggleDetails}>Update details</button>
 
+          <div className="dashboard-modules">
+            <MainStats />
+          </div>
         </div>
       </div>
     )

@@ -1,0 +1,43 @@
+// consider these global classes
+
+.btn-primary {
+  min-width: 150px;
+  height: 40px;
+  left: 1rem;
+  z-index: 11;
+  background: none;
+  font-size: .9rem;
+  border: none;
+  cursor: pointer;
+  background: #34495e;
+  box-shadow: 0px 1px 0px 0px rgba(0,0,0,.4);
+  color: white;
+  transition: all 150ms;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+}
+
+.btn-cancel {
+  min-width: 150px;
+  height: 40px;
+  left: 1rem;
+  z-index: 11;
+  background: none;
+  font-size: .9rem;
+  border: none;
+  cursor: pointer;
+  border: solid 1px #c0392b;
+  color: #c0392b;
+  transition: all 150ms;
+
+  &:hover {
+    background: #c0392b;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0px 1px 0px 0px rgba(0,0,0,.4);
+  }
+
+}
