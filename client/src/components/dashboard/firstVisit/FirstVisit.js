@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import './firstVisit.css';
+import './firstVisit.scss';
 
 class FirstVisit extends Component {
   constructor(props) {
     super(props)
-
+    const user = this.props.user;
     this.state = {
       exit: false,
-      name: '',
-      phone: ''
+      name: user.name,
+      phone: user.phone,
+      currentOccupation: user.currentOccupation,
+      annualIncome: user.annualIncome,
+      totalSavings: user.totalSavings,
+      totalInvested: user.totalInvested,
+      monthlySavings: user.monthlySavings,
+      monthlyInvested: user.monthlyInvested,
+      monthlyExpenses: user.monthlyExpenses,
+      location: user.location,
+      birthday: user.birthday,
+      desiredRetirementAge: user.desiredRetirementAge
     }
 
     this.handleName = this.handleName.bind(this);
@@ -21,7 +31,7 @@ class FirstVisit extends Component {
   }
 
   handleName(e) {
-    this.setState({name: e.target.value.charAt(0).toUpperCase});
+    this.setState({name: e.target.value});
   }
 
   handlePhone(e) {
@@ -64,17 +74,17 @@ class FirstVisit extends Component {
           <div className="form-group">
             <div className="input-group">
               <label>Name<span className="required-asterisk">*</span></label>
-              <input type="text" placeholder="name" onChange={this.handleName} />
+              <input type="text" placeholder="name" onChange={this.handleName} value={this.state.name} />
             </div>
 
             <div className="input-group">
               <label>Phone<span className="required-asterisk">*</span></label>
-              <input type="phone" placeholder="123-456-7890" onChange={this.handlePhone} />
+              <input type="phone" placeholder="123-456-7890" onChange={this.handlePhone} value={this.state.phone} />
             </div>
 
             <div className="input-group">
               <label>Current Occupation</label>
-              <input name="currentOccupation" placeholder="Ocupation" onChange={this.handleInputChange} />
+              <input name="currentOccupation" placeholder="Ocupation" onChange={this.handleInputChange} value={this.state.currentOccupation} />
             </div>
 
           </div>
@@ -83,17 +93,17 @@ class FirstVisit extends Component {
           <div className="form-group">
             <div className="input-group">
               <label>Annual Income</label>
-              <input name="annualIncome" placeholder="40000" onChange={this.handleInputChange} />
+              <input name="annualIncome" placeholder="40000" onChange={this.handleInputChange} value={this.state.annualIncome} />
             </div>
 
             <div className="input-group">
               <label>Current Savings<span className="required-asterisk">*</span></label>
-              <input name="totalSavings" placeholder="1000" onChange={this.handleInputChange} />
+              <input name="totalSavings" placeholder="1000" onChange={this.handleInputChange} value={this.state.totalSavings} />
             </div>
 
             <div className="input-group">
               <label>Current Amount Invested<span className="required-asterisk">*</span></label>
-              <input name="totalInvested" placeholder="1000" onChange={this.handleInputChange} />
+              <input name="totalInvested" placeholder="1000" onChange={this.handleInputChange} value={this.totalInvested} />
             </div>
 
           </div>
@@ -101,17 +111,17 @@ class FirstVisit extends Component {
           <div className="form-group">
             <div className="input-group">
               <label>Monthly Savings</label>
-              <input name="monthlySavings" placeholder="500" onChange={this.handleInputChange} />
+              <input name="monthlySavings" placeholder="500" onChange={this.handleInputChange} value={this.state.monthlySavings} />
             </div>
 
             <div className="input-group">
               <label>Monthly Invested</label>
-              <input name="monthlyInvested" placeholder="500" onChange={this.handleInputChange} />
+              <input name="monthlyInvested" placeholder="500" onChange={this.handleInputChange} value={this.state.monthlyInvested} />
             </div>
 
             <div className="input-group">
               <label>Monthly Bills</label>
-              <input name="monthlyExpenses" placeholder="1500" onChange={this.handleInputChange} />
+              <input name="monthlyExpenses" placeholder="1500" onChange={this.handleInputChange} value={this.state.monthlyExpenses} />
             </div>
 
           </div>
@@ -119,17 +129,17 @@ class FirstVisit extends Component {
           <div className="form-group">
             <div className="input-group">
               <label>Location</label>
-              <input name="location" placeholder="San Francisco" onChange={this.handleInputChange} />
+              <input name="location" placeholder="San Francisco" onChange={this.handleInputChange} value={this.state.location} />
             </div>
 
             <div className="input-group">
               <label>Birthday<span className="required-asterisk">*</span></label>
-              <input type="date" name="birthday" placeholder="12/31/1990" onChange={this.handleInputChange} />
+              <input type="text" name="birthday" placeholder="12/31/1990" onChange={this.handleInputChange} value={this.state.birthday} />
             </div>
 
             <div className="input-group">
               <label>Desired Retirement Age<span className="required-asterisk">*</span></label>
-              <input name="desiredRetirementAge" placeholder="35" onChange={this.handleInputChange} />
+              <input name="desiredRetirementAge" placeholder="35" onChange={this.handleInputChange} value={this.state.desiredRetirementAge} />
             </div>
 
 

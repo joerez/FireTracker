@@ -3,7 +3,8 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-import './styles.css';
+import '../App.scss';
+import './styles.scss';
 
 import Header from './Header';
 import Landing from './landing/Landing';
