@@ -12,6 +12,8 @@ class MainStats extends Component {
 
   componentDidMount() {
     this.getRetirementNetworth();
+
+
   }
 
   getTotalNetworth() {
@@ -31,28 +33,29 @@ class MainStats extends Component {
     const currentYear = new Date().getFullYear()
 
     let principle = user.totalInvested;
-    let interest = 80;
+    let interest = .08;
     let years = user.desiredRetirementAge - (currentYear - user.birthYear);
-    let D = 0;
-    let gain = principle * interest / 100;
+    let D = user.monthlyInvested * 12;
+    let gain = principle * interest;
     D += gain;
     let worth = gain + principle;
     for (var i = 1; i < years; i++) {
-      gain = worth * interest / 100;
+      gain = worth * interest;
       D += gain;
-      worth = gain + worth;
+      worth = gain + worth + D;
     }
 
     worth = Math.floor(worth);
+    let worthObj = {}
 
-    worth = this.addCommas(worth);
-
+    worthObj.pure = worth;
+    worthObj.formatted = this.addCommas(worth);
 
     if (!user.totalInvested || !user.desiredRetirementAge || !user.birthYear) {
       return 'Account not set up'
     }
 
-    return worth;
+    return worthObj;
 
   }
 
@@ -67,28 +70,40 @@ class MainStats extends Component {
   }
 
   getMonthlyIncome() {
-    let worth = this.getRetirementNetworth();
-    worth = worth.replace(/[^0-9]/, '');
-    console.log(worth)
-    worth = parseInt(worth) * .04;
-
-    return this.addCommas(worth);
+    let worth = this.getRetirementNetworth().pure;
+    // worth = worth.replace(/\D/g,'');
+    let monthly = worth * .04 / 12;
+    monthly = Math.floor(monthly);
+    return this.addCommas(monthly);
   }
 
 
   render() {
     return (
       <div className="main-stats">
-        <div className="stats-top">
-          <h3>Main Stats</h3>
-        </div>
+      <h3>Finances Overview</h3>
 
         <div className="stats-body">
-          <h3>Total NetWorth: {this.getTotalNetworth()}</h3>
+          <div className="stats-container">
+            <div className="stats-icon"></div>
+            <h3 className="stats-number">{this.getTotalNetworth()}</h3>
+            <h3 className="stats-title">Total NetWorth</h3>
+          </div>
 
-          <h3>Value at age {this.props.user.desiredRetirementAge}: {this.getRetirementNetworth()}</h3>
+          <div className="stats-container">
+            <div className="stats-icon"></div>
+            <h3 className="stats-number">{this.getRetirementNetworth().formatted}</h3>
+            <h3 className="stats-title">Value at age {this.props.user.desiredRetirementAge}</h3>
+          </div>
 
-          <h3>Monthly income at retirement: {this.getMonthlyIncome()}</h3>
+          <div className="stats-container">
+            <div className="stats-icon"></div>
+            <h3 className="stats-number">{this.getMonthlyIncome()}</h3>
+            <h3 className="stats-title">Monthly income at retirement</h3>
+          </div>
+
+
+
         </div>
       </div>
     )
