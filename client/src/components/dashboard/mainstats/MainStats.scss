@@ -1,11 +1,13 @@
 .main-stats {
+  padding-top: 5px;
   // box-shadow: 0px 1px 1px rgba(0,0,0,.3);
 
 
   .stats-container {
-    height: 20rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    position: relative;
     width: 20rem;
-    box-shadow: 1px 0px 4px rgba(189, 195, 199,.7);
     border-radius: 4px;
     transition: all 150ms;
     background: white;
@@ -15,28 +17,45 @@
     justify-content: center;
 
     &:hover {
-      transform: translateY(-1px);
+      box-shadow: 0px 30px 40px 10px rgba(189, 195, 199,.4);
+      transform: translateY(-2px);
     }
 
     .stats-icon {
-      height: 50px;
-      width: 50px;
-      background: rgba(236, 240, 241,1.0);
+      position: absolute;
+      top: -.5rem;
+      right: -.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0px 2px 3px rgba(41, 128, 185,0.3);
+      height: 30px;
+      width: 30px;
+      background: rgba(41, 128, 185,1.0);
       border-radius: 100%;
+      cursor: pointer;
+
+      i {
+        color: white;
+      }
     }
 
     .stats-number {
       font-size: 3rem;
       font-weight: 600;
       text-align: center;
+      color: rgba(0,0,0,.90);
+      padding: 0;
+      margin: 0;
+      margin-bottom: 10px;
     }
 
     .stats-title {
+      margin: 0;
       font-size: 1rem;
       font-weight: 400;
       text-align: center;
       color: rgba(127, 140, 141,1.0);
-      padding-bottom: 1rem;
     }
 
   }
@@ -46,8 +65,8 @@
   .stats-body {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    width: calc(100vw - 100px);
+    justify-content: space-between;
+    width: 100%;
     flex-wrap: wrap;
   }
 }
