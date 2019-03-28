@@ -7,6 +7,9 @@ import SideNav from '../sidenav/SideNav';
 
 import FirstVisit from './firstVisit/FirstVisit';
 import MainStats from './mainstats/MainStats';
+import Graph from './mainstats/Graph';
+import { managerData, yearLabels } from "./mockData";
+
 
 class Dashboard extends Component {
   constructor(props) {
@@ -14,8 +17,12 @@ class Dashboard extends Component {
 
     this.state = {
       updateDetails: this.props.auth.firstVisit,
-      message: ''
+      message: '',
+      data: managerData,
+      labels: yearLabels
     }
+
+
 
     this.detailsUpdated = this.detailsUpdated.bind(this);
     this.toggleDetails = this.toggleDetails.bind(this);
@@ -75,6 +82,10 @@ class Dashboard extends Component {
               <button className="absolute-settings-btn" onClick={this.toggleDetails}>Update details <i className="gray-carrot fas fa-user-cog"></i></button>
             </div>
             <MainStats user={this.props.auth}/>
+
+            <Graph user={this.props.auth} data={this.state.data} label={this.state.labels} />
+
+
             <img className="fake-img" width="99.8%" src="https://i.ibb.co/3zCsYyY/Screen-Shot-2019-03-26-at-6-09-35-PM.png" />
 
           </div>
