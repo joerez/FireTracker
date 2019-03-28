@@ -12,7 +12,7 @@ class SideNav extends Component {
         </div>
 
         <div className="side-nav-links">
-          <Link className="side-nav-item" to="/dashboard"> <img height="30px" src="http://chittagongit.com//images/fire-icon-png/fire-icon-png-25.jpg" /> </Link>
+          <Link className="side-nav-item" to="/dashboard"> <i className="blue fas fa-fire"></i> </Link>
         </div>
       </div>
     )

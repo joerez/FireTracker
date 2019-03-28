@@ -81,25 +81,36 @@ class MainStats extends Component {
   render() {
     return (
       <div className="main-stats">
-      <h3>Finances Overview</h3>
 
         <div className="stats-body">
           <div className="stats-container">
-            <div className="stats-icon"></div>
-            <h3 className="stats-number">{this.getTotalNetworth()}</h3>
-            <h3 className="stats-title">Total NetWorth</h3>
+            <div className="stats-icon">
+              <i className="blue fas fa-donate"></i>
+            </div>
+            <div>
+              <h3 className="stats-number">{this.getTotalNetworth()}</h3>
+              <h3 className="stats-title">Total NetWorth</h3>
+            </div>
           </div>
 
           <div className="stats-container">
-            <div className="stats-icon"></div>
-            <h3 className="stats-number">{this.getRetirementNetworth().formatted}</h3>
-            <h3 className="stats-title">Value at age {this.props.user.desiredRetirementAge}</h3>
+            <div className="stats-icon">
+              <i className="blue fas fa-user-clock"></i>
+            </div>
+            <div>
+              <h3 className="stats-number">{this.getRetirementNetworth().formatted}</h3>
+              <h3 className="stats-title">Value at age {this.props.user.desiredRetirementAge}</h3>
+            </div>
           </div>
 
           <div className="stats-container">
-            <div className="stats-icon"></div>
-            <h3 className="stats-number">{this.getMonthlyIncome()}</h3>
-            <h3 className="stats-title">Monthly income at retirement</h3>
+            <div className="stats-icon">
+              <i className="blue fas fa-piggy-bank"></i>
+            </div>
+            <div>
+              <h3 className="stats-number">{this.getMonthlyIncome()}</h3>
+              <h3 className="stats-title">Monthly income at retirement</h3>
+            </div>
           </div>
 
 

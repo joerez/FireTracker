@@ -68,11 +68,17 @@ class Dashboard extends Component {
           {this.renderError()}
           {this.renderUpdateDetails()}
 
-          <button className="absolute-settings-btn" onClick={this.toggleDetails}>Update details</button>
 
           <div className="dashboard-modules">
+            <div className="module-header">
+              <h3 className="dash-title">Finances Overview</h3>
+              <button className="absolute-settings-btn" onClick={this.toggleDetails}>Update details <i className="gray-carrot fas fa-user-cog"></i></button>
+            </div>
             <MainStats user={this.props.auth}/>
+            <img className="fake-img" width="99.8%" src="https://i.ibb.co/3zCsYyY/Screen-Shot-2019-03-26-at-6-09-35-PM.png" />
+
           </div>
+
         </div>
       </div>
     )
