@@ -8,7 +8,7 @@ class Graph extends Component {
 
   chartRef = React.createRef();
 
-  componentDidMount() {
+  componentDidUpdate() {
     const myChartRef = this.chartRef.current.getContext("2d");
 
     new Chart(myChartRef, {
@@ -20,30 +20,34 @@ class Graph extends Component {
           {
             label: "Yearly Retirement Income",
             data: [60, 121, 182, 243, 304, 364, 417, 478, 539, 600],
-            backgroundColor: 'rgba(241, 196, 15,.9)',
-            pointBackgroundColor: '#3498db',
-            pointBorderColor: '#2c3e50'
+            backgroundColor: 'rgba(241, 196, 15,.2)',
+            pointBackgroundColor: 'white',
+            pointBorderColor: 'rgba(241, 196, 15,1)',
+            borderColor: 'rgba(241, 196, 15,.8)'
+          },
+          {
+            label: "Savings",
+            data: this.props.auth.monthlySavingsData,
+            backgroundColor: 'rgba(41, 128, 185,.2)',
+            pointBackgroundColor: 'white',
+            pointBorderColor: 'rgba(41, 128, 185,1)',
+            borderColor: 'rgba(41, 128, 185,.8)'
           },
           {
             label: "Investments",
             data: [720, 1440, 2160, 2880, 3600, 4320, 5040, 5760, 6480, 7200],
-            backgroundColor: 'rgba(39, 174, 96,.9)',
-            pointBackgroundColor: '#3498db',
-            pointBorderColor: '#2c3e50'
-          },
-          {
-            label: "Savings",
-            data: [800, 1600, 2400, 3200, 4000, 4800, 5400, 6200, 7000, 7800],
-            backgroundColor: 'rgba(41, 128, 185,.9)',
-            pointBackgroundColor: '#3498db',
-            pointBorderColor: '#2c3e50'
+            backgroundColor: 'rgba(39, 174, 96,.2)',
+            pointBackgroundColor: 'white',
+            pointBorderColor: 'rgba(39, 174, 96,1)',
+            borderColor: 'rgba(39, 174, 96,.8)'
           },
           {
             label: "Net Worth",
             data: [1520, 3040, 4560, 6080, 7600, 9120, 10440, 11960, 13480, 15000],
-            backgroundColor: 'rgba(155, 89, 182,.9)',
-            pointBackgroundColor: '#3498db',
-            pointBorderColor: '#2c3e50'
+            backgroundColor: 'rgba(155, 89, 182,.2)',
+            pointBackgroundColor: 'white',
+            pointBorderColor: 'rgba(155, 89, 182,1)',
+            borderColor: 'rgba(155, 89, 182,.8)'
           }
         ]
       },
@@ -67,7 +71,7 @@ class Graph extends Component {
   render() {
     return (
       <div className="graphs-container">
-        <h3>Monthly Deposits</h3>
+        <h3>Monthly Savings</h3>
 
         <canvas
           id="myChart"

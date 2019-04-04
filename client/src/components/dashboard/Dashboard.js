@@ -29,9 +29,6 @@ class Dashboard extends Component {
     this.resetErrors = this.resetErrors.bind(this);
   }
 
-  componentDidMount() {
-    this.props.fetchUser();
-  }
 
   renderError() {
     if (this.state.message) {
@@ -50,11 +47,11 @@ class Dashboard extends Component {
   toggleDetails() {
     if (this.state.updateDetails) {
       setTimeout(() => {
-        this.props.fetchUser();
+        this.props.getUser();
         this.setState({updateDetails: false});
       }, 150);
     } else {
-      this.props.fetchUser();
+      this.props.getUser();
       this.setState({updateDetails: true});
     }
   }
@@ -83,7 +80,7 @@ class Dashboard extends Component {
             </div>
             <MainStats user={this.props.auth}/>
 
-            <Graph user={this.props.auth} data={this.state.data} label={this.state.labels} />
+            <Graph auth={this.props.auth} getUser={this.props.getUser} data={this.state.data} label={this.state.labels} />
 
 
             <img className="fake-img" width="99.8%" src="https://i.ibb.co/3zCsYyY/Screen-Shot-2019-03-26-at-6-09-35-PM.png" />
@@ -96,8 +93,10 @@ class Dashboard extends Component {
   }
 }
 
-function mapStateToProps({ auth }) {
-  return { auth };
-}
+// function mapStateToProps({ auth }) {
+//   return { auth };
+// }
+//
+// export default connect(mapStateToProps, {fetchUser})(Dashboard);
 
-export default connect(mapStateToProps, {fetchUser})(Dashboard);
+export default Dashboard;
