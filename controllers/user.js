@@ -57,6 +57,24 @@ module.exports = (passport, app, User) => {
       user.birthYear = req.body.birthYear;
       user.desiredRetirementAge = req.body.desiredRetirementAge;
 
+      user.monthlyNetworthData = req.body.monthlyNetworthData;
+      user.monthlyInvestedData = req.body.monthlyInvestedData;
+
+      let previousSavingsValue = req.body.totalSavings;
+      let newSavingsValue = 0;
+      let monthlySavingsData = []
+      for (let i = 0; i < 13; i++) {
+
+        newSavingsValue = parseInt(previousSavingsValue) + parseInt(req.body.monthlySavings);
+
+        monthlySavingsData.push(newSavingsValue);
+
+        previousSavingsValue = newSavingsValue;
+      }
+
+      user.monthlySavingsData = monthlySavingsData;
+
+
       user.firstVisit = false;
       user.save().then(() => {
         res.send({status: 'success', message: 'Your account details have been saved!'});

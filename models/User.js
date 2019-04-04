@@ -24,7 +24,10 @@ const userSchema = new Schema({
   location: String,
   timeUntilRetirement: String,
   birthYear: String,
-  desiredRetirementAge: Number
+  desiredRetirementAge: Number,
+  monthlyNetworthData: Array,
+  monthlySavingsData: Array,
+  monthlyInvestedData: Array
 });
 
 const User = mongoose.model('User', userSchema);

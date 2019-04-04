@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 
 import './MainStats.scss';
+import axios from 'axios';
 
 class MainStats extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      monthlySavingsData: []
+    }
+
     this.getRetirementNetworth = this.getRetirementNetworth.bind(this);
     this.getMonthlyIncome = this.getMonthlyIncome.bind(this);
   }
 
-  componentDidMount() {
-    this.getRetirementNetworth();
 
-
-  }
 
   getTotalNetworth() {
     const user = this.props.user;
@@ -51,6 +52,7 @@ class MainStats extends Component {
     worthObj.pure = worth;
     worthObj.formatted = this.addCommas(worth);
 
+
     if (!user.totalInvested || !user.desiredRetirementAge || !user.birthYear) {
       return 'Account not set up'
     }
@@ -58,6 +60,8 @@ class MainStats extends Component {
     return worthObj;
 
   }
+
+
 
   addCommas(num) {
     num = num.toString();
@@ -81,7 +85,6 @@ class MainStats extends Component {
   render() {
     return (
       <div className="main-stats">
-
         <div className="stats-body">
           <div className="stats-container">
             <div className="stats-icon">
