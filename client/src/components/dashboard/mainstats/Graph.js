@@ -9,6 +9,8 @@ class Graph extends Component {
   chartRef = React.createRef();
 
   componentDidUpdate() {
+    // this.props.getUser();
+
     const myChartRef = this.chartRef.current.getContext("2d");
 
     new Chart(myChartRef, {
@@ -19,7 +21,7 @@ class Graph extends Component {
         datasets: [
           {
             label: "Yearly Retirement Income",
-            data: [60, 121, 182, 243, 304, 364, 417, 478, 539, 600],
+            data: this.props.auth.monthlyRetirementData,
             backgroundColor: 'rgba(241, 196, 15,.2)',
             pointBackgroundColor: 'white',
             pointBorderColor: 'rgba(241, 196, 15,1)',
@@ -35,7 +37,7 @@ class Graph extends Component {
           },
           {
             label: "Investments",
-            data: [720, 1440, 2160, 2880, 3600, 4320, 5040, 5760, 6480, 7200],
+            data: this.props.auth.monthlyInvestedData,
             backgroundColor: 'rgba(39, 174, 96,.2)',
             pointBackgroundColor: 'white',
             pointBorderColor: 'rgba(39, 174, 96,1)',
