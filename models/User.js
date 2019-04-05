@@ -27,7 +27,8 @@ const userSchema = new Schema({
   desiredRetirementAge: Number,
   monthlyNetworthData: Array,
   monthlySavingsData: Array,
-  monthlyInvestedData: Array
+  monthlyInvestedData: Array,
+  monthlyRetirementData: Array
 });
 
 const User = mongoose.model('User', userSchema);

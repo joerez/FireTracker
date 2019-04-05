@@ -57,14 +57,19 @@ module.exports = (passport, app, User) => {
       user.birthYear = req.body.birthYear;
       user.desiredRetirementAge = req.body.desiredRetirementAge;
 
-      user.monthlyNetworthData = req.body.monthlyNetworthData;
       user.monthlyInvestedData = req.body.monthlyInvestedData;
 
-      let previousSavingsValue = req.body.totalSavings;
+      const previousSavingsValue = req.body.totalSavings;
       let newSavingsValue = 0;
 
+      const previousInvestedValue = req.body.totalInvested
+
       user.monthlySavingsData = getUserSavingsData(previousSavingsValue, newSavingsValue, user.monthlySavings)
+      user.monthlyInvestedData = getUserSavingsData(previousInvestedValue, newSavingsValue, user.monthlyInvested)
       user.monthlyNetworthData = getUserNetworthData(previousSavingsValue, newSavingsValue, user.monthlySavings, user.monthlyInvested, user.totalInvested)
+      user.monthlyRetirementData = user.monthlyNetworthData.map((monthlyNetworth) => {
+        return Math.floor(monthlyNetworth *= .04);
+      })
 
       user.firstVisit = false;
       user.save().then(() => {
