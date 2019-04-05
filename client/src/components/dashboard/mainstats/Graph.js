@@ -15,7 +15,7 @@ class Graph extends Component {
       type: "line",
       data: {
         //Bring in data
-        labels: ["March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+        labels: ["April", "May", "June", "July", "August", "September", "October", "November", "December", "January"],
         datasets: [
           {
             label: "Yearly Retirement Income",
@@ -43,7 +43,7 @@ class Graph extends Component {
           },
           {
             label: "Net Worth",
-            data: [1520, 3040, 4560, 6080, 7600, 9120, 10440, 11960, 13480, 15000],
+            data: this.props.auth.monthlyNetworthData,
             backgroundColor: 'rgba(155, 89, 182,.2)',
             pointBackgroundColor: 'white',
             pointBorderColor: 'rgba(155, 89, 182,1)',

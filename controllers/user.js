@@ -62,18 +62,9 @@ module.exports = (passport, app, User) => {
 
       let previousSavingsValue = req.body.totalSavings;
       let newSavingsValue = 0;
-      let monthlySavingsData = []
-      for (let i = 0; i < 13; i++) {
 
-        newSavingsValue = parseInt(previousSavingsValue) + parseInt(req.body.monthlySavings);
-
-        monthlySavingsData.push(newSavingsValue);
-
-        previousSavingsValue = newSavingsValue;
-      }
-
-      user.monthlySavingsData = monthlySavingsData;
-
+      user.monthlySavingsData = getUserSavingsData(previousSavingsValue, newSavingsValue, user.monthlySavings)
+      user.monthlyNetworthData = getUserNetworthData(previousSavingsValue, newSavingsValue, user.monthlySavings, user.monthlyInvested, user.totalInvested)
 
       user.firstVisit = false;
       user.save().then(() => {
@@ -85,5 +76,32 @@ module.exports = (passport, app, User) => {
       console.log(err);
     })
   })
+
+  function getUserSavingsData(prevValues, newValues, savings) {
+    let monthlySavingsData = []
+    for (let i = 0; i < 13; i++) {
+
+      newValues = parseInt(prevValues) + parseInt(savings);
+
+      monthlySavingsData.push(newValues);
+
+      prevValues = newValues;
+    }
+
+    return monthlySavingsData;
+  }
+
+  function getUserNetworthData(prevValues, newValues, savings, monthlyInvestments, currentInvestments) {
+    let monthlyNetworthData = [];
+    prevValues += currentInvestments;
+    for (let i = 0; i <13; i++) {
+      newValues = parseInt(prevValues) + parseInt(savings) + parseInt(monthlyInvestments);
+
+      monthlyNetworthData.push(newValues);
+
+      prevValues = newValues;
+    }
+    return monthlyNetworthData;
+  }
 
 }
