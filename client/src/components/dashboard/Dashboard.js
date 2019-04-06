@@ -7,7 +7,6 @@ import FirstVisit from './firstVisit/FirstVisit';
 import MainStats from './mainstats/MainStats';
 import Graph from './mainstats/Graph';
 import Bar from './mainstats/bar';
-import { managerData, yearLabels } from "./mockData";
 
 
 class Dashboard extends Component {
@@ -17,8 +16,6 @@ class Dashboard extends Component {
     this.state = {
       updateDetails: this.props.auth.firstVisit,
       message: '',
-      data: managerData,
-      labels: yearLabels
     }
 
 
@@ -79,10 +76,10 @@ class Dashboard extends Component {
             </div>
             <MainStats user={this.props.auth}/>
 
-            <Graph auth={this.props.auth} getUser={this.props.getUser} data={this.state.data} label={this.state.labels} />
-
-            <Bar auth={this.props.auth} />
-
+            <div className="horizontal-charts">
+              <Graph auth={this.props.auth} getUser={this.props.getUser}/>
+              <Bar auth={this.props.auth} />
+            </div>
             <img className="fake-img" alt="fake" width="99.8%" src="https://i.ibb.co/3zCsYyY/Screen-Shot-2019-03-26-at-6-09-35-PM.png" />
 
           </div>
@@ -92,11 +89,5 @@ class Dashboard extends Component {
     )
   }
 }
-
-// function mapStateToProps({ auth }) {
-//   return { auth };
-// }
-//
-// export default connect(mapStateToProps, {fetchUser})(Dashboard);
 
 export default Dashboard;

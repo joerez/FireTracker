@@ -1,3 +1,8 @@
+.horizontal-charts {
+  display: flex;
+  justify-content: space-between;
+}
+
 .main-stats {
   padding-top: 5px;
   // box-shadow: 0px 1px 1px rgba(0,0,0,.3);
@@ -88,4 +93,39 @@
     // transform: translateY(-2px);
   }
 
+}
+
+.rendered-math {
+  .good {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #27ae60;
+  }
+
+  .bad {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #e74c3c;
+  }
+}
+
+.smaller-graphs-container {
+  margin-top: 1rem;
+  height: 20rem;
+  width: 27rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 6rem;
+  padding-top: 2rem;
+  background: white;
+  text-align: center;
+
+  .doughnut-graph {
+    position: relative;
+  }
+
+  .graph-chart {
+    position: relative;
+    height: 500px;
+  }
 }
