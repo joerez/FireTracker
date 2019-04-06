@@ -114,7 +114,7 @@ class FirstVisit extends Component {
           <div className="form-group">
             <div className="input-group">
               <label>Monthly Take Home Pay</label>
-              <input name="takeHomePay" placeholder="21000" onChange={this.handleInputChange} value={this.state.takeHomePay} />
+              <input name="takeHomePay" placeholder="3200" onChange={this.handleInputChange} value={this.state.takeHomePay} />
             </div>
 
             <div className="input-group">
