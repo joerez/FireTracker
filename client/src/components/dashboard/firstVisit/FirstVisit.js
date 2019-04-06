@@ -13,6 +13,7 @@ class FirstVisit extends Component {
       phone: user.phone,
       currentOccupation: user.currentOccupation,
       annualIncome: user.annualIncome,
+      takeHomePay: user.takeHomePay,
       totalSavings: user.totalSavings,
       totalInvested: user.totalInvested,
       monthlySavings: user.monthlySavings,
@@ -96,6 +97,8 @@ class FirstVisit extends Component {
               <input name="annualIncome" placeholder="40000" onChange={this.handleInputChange} value={this.state.annualIncome} />
             </div>
 
+
+
             <div className="input-group">
               <label>Current Savings<span className="required-asterisk">*</span></label>
               <input name="totalSavings" placeholder="1000" onChange={this.handleInputChange} value={this.state.totalSavings} />
@@ -109,6 +112,11 @@ class FirstVisit extends Component {
           </div>
 
           <div className="form-group">
+            <div className="input-group">
+              <label>Monthly Take Home Pay</label>
+              <input name="takeHomePay" placeholder="21000" onChange={this.handleInputChange} value={this.state.takeHomePay} />
+            </div>
+
             <div className="input-group">
               <label>Monthly Savings</label>
               <input name="monthlySavings" placeholder="500" onChange={this.handleInputChange} value={this.state.monthlySavings} />
@@ -124,9 +132,11 @@ class FirstVisit extends Component {
               <input name="monthlyExpenses" placeholder="1500" onChange={this.handleInputChange} value={this.state.monthlyExpenses} />
             </div>
 
+
           </div>
 
           <div className="form-group">
+
             <div className="input-group">
               <label>Location</label>
               <input name="location" placeholder="San Francisco" onChange={this.handleInputChange} value={this.state.location} />

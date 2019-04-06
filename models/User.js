@@ -12,6 +12,7 @@ const userSchema = new Schema({
   firstVisit : { type: Boolean, default: true },
   currentOccupation: String,
   annualIncome: Number,
+  takeHomePay: Number,
   totalSavings: Number,
   totalInvested: Number,
   netWorth: Number,
