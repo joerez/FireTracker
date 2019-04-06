@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import './MainStats.scss';
-import axios from 'axios';
 
 class MainStats extends Component {
   constructor(props) {

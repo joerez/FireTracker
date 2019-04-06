@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux";
 
-import { fetchUser } from '../../actions';
 import Alert from '../alert/Alert';
 import SideNav from '../sidenav/SideNav';
 
 import FirstVisit from './firstVisit/FirstVisit';
 import MainStats from './mainstats/MainStats';
 import Graph from './mainstats/Graph';
+import Bar from './mainstats/bar';
 import { managerData, yearLabels } from "./mockData";
 
 
@@ -82,8 +81,9 @@ class Dashboard extends Component {
 
             <Graph auth={this.props.auth} getUser={this.props.getUser} data={this.state.data} label={this.state.labels} />
 
+            <Bar auth={this.props.auth} />
 
-            <img className="fake-img" width="99.8%" src="https://i.ibb.co/3zCsYyY/Screen-Shot-2019-03-26-at-6-09-35-PM.png" />
+            <img className="fake-img" alt="fake" width="99.8%" src="https://i.ibb.co/3zCsYyY/Screen-Shot-2019-03-26-at-6-09-35-PM.png" />
 
           </div>
 
