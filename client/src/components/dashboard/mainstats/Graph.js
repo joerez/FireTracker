@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import Chart from "chart.js";
 
+import { DefaultLabels } from './statsConfigs';
+
+let myLineChart;
+
 Chart.defaults.global.defaultFontFamily = "'PT Sans', sans-serif"
 Chart.defaults.global.elements.point.backgroundColor = 'white';
 
@@ -8,19 +12,31 @@ class Graph extends Component {
 
   chartRef = React.createRef();
 
+  componentDidMount() {
+    this.buildChart();
+  }
+
   componentDidUpdate() {
+    this.buildChart();
+  }
+
+
+  buildChart() {
     // this.props.getUser();
 
     const myChartRef = this.chartRef.current.getContext("2d");
 
-    new Chart(myChartRef, {
+    if (typeof myLineChart !== "undefined") myLineChart.destroy();
+
+
+    myLineChart = new Chart(myChartRef, {
       type: "line",
       data: {
         //Bring in data
         labels: ["April", "May", "June", "July", "August", "September", "October", "November", "December", "January"],
         datasets: [
           {
-            label: "Yearly Retirement Income",
+            label: "Retirement Income",
             data: this.props.auth.monthlyRetirementData,
             backgroundColor: 'rgba(241, 196, 15,.2)',
             pointBackgroundColor: 'white',
@@ -55,30 +71,39 @@ class Graph extends Component {
       },
       options: {
         //Customize chart options
-        layout: {
-          },
-          scales: {
-            yAxes: [{
-              display: true,
-              ticks: {
-                suggestedMin: 50,    // minimum will be 0, unless there is a lower value.
-              }
-            }]
+        layout: {},
+        scales: {
+          yAxes: [{
+            display: true,
+            ticks: {
+              suggestedMin: 50,    // minimum will be 0, unless there is a lower value.
+            }
+          }]
+        },
+        tooltips: DefaultLabels,
+        legend: {
+          position: 'bottom',
+          labels: {
+            boxWidth: 20
           }
-        }
-      });
-    }
+        },
+      }
+    })
 
+
+  }
 
   render() {
     return (
-      <div className="graphs-container">
+      <div className="smaller-graphs-container">
         <h3>Monthly Savings</h3>
 
-        <canvas
-          id="myChart"
-          ref={this.chartRef}
-        />
+        <div className="graph-chart">
+          <canvas
+            id="myChart"
+            ref={this.chartRef}
+          />
+        </div>
       </div>
     )
   }
