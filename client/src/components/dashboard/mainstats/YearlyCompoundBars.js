@@ -82,7 +82,7 @@ class YearlyCompoundBars extends Component {
   render() {
     return (
       <div className="graphs-container">
-        <h3>Yearly Retirement Data</h3>
+        <h3>Yearly Retirement Data (8% Compounded Yearly)</h3>
 
 
           <canvas
