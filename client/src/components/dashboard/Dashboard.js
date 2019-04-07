@@ -7,7 +7,7 @@ import FirstVisit from './firstVisit/FirstVisit';
 import MainStats from './mainstats/MainStats';
 import MonthlyStatisticsChart from './mainstats/MonthlyStatisticsChart';
 import SavingSpendingChart from './mainstats/SavingSpendingChart';
-
+import YearlyCompoundBars from './mainstats/YearlyCompoundBars';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -70,6 +70,7 @@ class Dashboard extends Component {
           <div className="horizontal-charts">
             <MonthlyStatisticsChart auth={this.props.auth} getUser={this.props.getUser}/>
             <SavingSpendingChart auth={this.props.auth} />
+            <YearlyCompoundBars auth={this.props.auth} />
           </div>
         </div>
       )

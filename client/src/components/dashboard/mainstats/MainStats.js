@@ -94,7 +94,7 @@ class MainStats extends Component {
             </div>
             <div>
               <h3 className="stats-number">{this.getRetirementNetworth().formatted}</h3>
-              <h3 className="stats-title">Value at age {this.props.user.desiredRetirementAge}</h3>
+              <h3 className="stats-title">Portfolio Value at age {this.props.user.desiredRetirementAge}</h3>
             </div>
           </div>
 
