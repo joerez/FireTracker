@@ -8,7 +8,7 @@ let myLineChart;
 Chart.defaults.global.defaultFontFamily = "'PT Sans', sans-serif"
 Chart.defaults.global.elements.point.backgroundColor = 'white';
 
-class Graph extends Component {
+class MonthlyStatisticsChart extends Component {
 
   chartRef = React.createRef();
 
@@ -111,4 +111,4 @@ class Graph extends Component {
   }
 }
 
-export default Graph;
+export default MonthlyStatisticsChart;
