@@ -1,3 +1,5 @@
+const compound = require('compound-interest')
+
 
 module.exports = (passport, app, User) => {
 
@@ -71,6 +73,18 @@ module.exports = (passport, app, User) => {
       user.monthlyRetirementData = user.monthlyNetworthData.map((monthlyNetworth) => {
         return Math.floor(monthlyNetworth *= .04);
       })
+
+      const currentYear = new Date().getFullYear()
+
+      const opts = {
+        initial: parseInt(user.totalInvested),  
+        monthly: parseInt(user.monthlyInvested),
+        interest: 8,
+        compound: 1,
+        years: parseInt(user.desiredRetirementAge - (currentYear - user.birthYear))
+      };
+
+      user.yearlyRetirementData = compound.verbose(opts);
 
       user.firstVisit = false;
       user.save().then(() => {

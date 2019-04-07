@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
+import compound from 'compound-interest';
+
 import './MainStats.scss';
+
 
 class MainStats extends Component {
   constructor(props) {
@@ -13,8 +16,6 @@ class MainStats extends Component {
     this.getRetirementNetworth = this.getRetirementNetworth.bind(this);
     this.getMonthlyIncome = this.getMonthlyIncome.bind(this);
   }
-
-
 
   getTotalNetworth() {
     const user = this.props.user;
@@ -32,35 +33,27 @@ class MainStats extends Component {
     const user = this.props.user;
     const currentYear = new Date().getFullYear()
 
-    let principle = user.totalInvested;
-    let interest = .08;
-    let years = user.desiredRetirementAge - (currentYear - user.birthYear);
-    let D = user.monthlyInvested * 12;
-    let gain = principle * interest;
-    D += gain;
-    let worth = gain + principle;
-    for (var i = 1; i < years; i++) {
-      gain = worth * interest;
-      D += gain;
-      worth = gain + worth + D;
+    if (user.desiredRetirementAge && user.birthYear && user.totalInvested && user.monthlyInvested) {
+      const opts = {
+        initial: parseInt(user.totalInvested),  // initial balance
+        monthly: parseInt(user.monthlyInvested),   // monthly addition
+        interest: 8,    // +% interest
+        compound: 1,   // compounding factor (1, 12, 365...)
+        years: parseInt(user.desiredRetirementAge - (currentYear - user.birthYear))
+      };
+
+      let total = compound(opts); // 8083
+
+      let totalWorthObj = {}
+      totalWorthObj.pure = total;
+      totalWorthObj.formatted = this.addCommas(Math.floor(total));
+
+      return totalWorthObj;
+
+    } else {
+      return 'Account Not Set Up'
     }
-
-    worth = Math.floor(worth);
-    let worthObj = {}
-
-    worthObj.pure = worth;
-    worthObj.formatted = this.addCommas(worth);
-
-
-    if (!user.totalInvested || !user.desiredRetirementAge || !user.birthYear) {
-      return 'Account not set up'
-    }
-
-    return worthObj;
-
   }
-
-
 
   addCommas(num) {
     num = num.toString();

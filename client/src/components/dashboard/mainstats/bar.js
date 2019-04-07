@@ -29,6 +29,7 @@ class Bar extends Component {
 
   buildChart() {
     // this.props.getUser();
+    if (this.props.auth) {
     let takeHomePay = this.props.auth.takeHomePay;
     let invested = this.props.auth.monthlyInvested;
     let saved = this.props.auth.monthlySavings;
@@ -64,8 +65,10 @@ class Bar extends Component {
       }
       });
     }
+    }
 
     renderMaths() {
+      if (this.props.auth) {
       let percentSavedAndInvested = 0;
       let takeHomePay = this.props.auth.takeHomePay;
       let invested = this.props.auth.monthlyInvested;
@@ -87,7 +90,7 @@ class Bar extends Component {
           </div>
         )
       }
-
+    }
     }
 
 
