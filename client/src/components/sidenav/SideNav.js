@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import './SideNav.scss';
+import logo from './firetracker.png';
 
 class SideNav extends Component {
   render() {
@@ -12,7 +13,10 @@ class SideNav extends Component {
         </div>
 
         <div className="side-nav-links">
-          <Link className="side-nav-item" to="/dashboard"> <i className="blue fas fa-fire"></i> </Link>
+          <Link className="side-nav-item" to="/dashboard">
+            <img className="logo" alt="logo" src={logo} />
+           {/*<i className="blue fas fa-fire"></i> */}
+          </Link>
         </div>
       </div>
     )

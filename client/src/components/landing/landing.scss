@@ -53,6 +53,19 @@
 
   }
 
+  .nav-landing-logo {
+    position: fixed;
+    top: .7rem;
+    left: .5rem;
+    z-index: 100000;
+    height: 30px;
+    transition: all 200ms;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
 }
 
 .larger-letter {
