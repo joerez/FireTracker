@@ -96,7 +96,7 @@ class Graph extends Component {
   render() {
     return (
       <div className="smaller-graphs-container">
-        <h3>Monthly Savings</h3>
+        <h3>Monthly Statistics</h3>
 
         <div className="graph-chart">
           <canvas
@@ -104,6 +104,8 @@ class Graph extends Component {
             ref={this.chartRef}
           />
         </div>
+
+        <h3>You are on track for retirement!</h3>
       </div>
     )
   }
