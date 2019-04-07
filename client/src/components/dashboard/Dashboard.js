@@ -5,8 +5,8 @@ import SideNav from '../sidenav/SideNav';
 
 import FirstVisit from './firstVisit/FirstVisit';
 import MainStats from './mainstats/MainStats';
-import Graph from './mainstats/Graph';
-import Bar from './mainstats/bar';
+import MonthlyStatisticsChart from './mainstats/MonthlyStatisticsChart';
+import SavingSpendingChart from './mainstats/SavingSpendingChart';
 
 
 class Dashboard extends Component {
@@ -68,8 +68,8 @@ class Dashboard extends Component {
         <div>
           <MainStats user={this.props.auth}/>
           <div className="horizontal-charts">
-            <Graph auth={this.props.auth} getUser={this.props.getUser}/>
-            <Bar auth={this.props.auth} />
+            <MonthlyStatisticsChart auth={this.props.auth} getUser={this.props.getUser}/>
+            <SavingSpendingChart auth={this.props.auth} />
           </div>
         </div>
       )

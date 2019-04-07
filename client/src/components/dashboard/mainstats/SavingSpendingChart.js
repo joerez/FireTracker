@@ -8,7 +8,7 @@ let myBarChart;
 Chart.defaults.global.defaultFontFamily = "'PT Sans', sans-serif"
 Chart.defaults.global.elements.point.backgroundColor = 'white';
 
-class Bar extends Component {
+class SavingSpendingChart extends Component {
 
   state = {
     takeHomePay: 0,
@@ -112,4 +112,4 @@ class Bar extends Component {
   }
 }
 
-export default Bar;
+export default SavingSpendingChart;
