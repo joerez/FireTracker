@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-
 import compound from 'compound-interest';
 
+import StatBox from './StatBox';
+
 import './MainStats.scss';
+
 
 
 class MainStats extends Component {
@@ -78,37 +80,18 @@ class MainStats extends Component {
     return (
       <div className="main-stats">
         <div className="stats-body">
-          <div className="stats-container">
-            <div className="stats-icon">
-              <i className="blue fas fa-donate"></i>
-            </div>
-            <div>
-              <h3 className="stats-number">{this.getTotalNetworth()}</h3>
-              <h3 className="stats-title">Total NetWorth</h3>
-            </div>
-          </div>
 
-          <div className="stats-container">
-            <div className="stats-icon">
-              <i className="blue fas fa-user-clock"></i>
-            </div>
-            <div>
-              <h3 className="stats-number">{this.getRetirementNetworth().formatted}</h3>
-              <h3 className="stats-title">Portfolio Value at age {this.props.user.desiredRetirementAge}</h3>
-            </div>
-          </div>
+          <StatBox icon="donate" value={this.getTotalNetworth()} title="Total Networth"
+            hint="Current total savings and investments."
+           />
 
-          <div className="stats-container">
-            <div className="stats-icon">
-              <i className="blue fas fa-piggy-bank"></i>
-            </div>
-            <div>
-              <h3 className="stats-number">{this.getMonthlyIncome()}</h3>
-              <h3 className="stats-title">Monthly income at retirement</h3>
-            </div>
-          </div>
+          <StatBox icon="user-clock" value={this.getRetirementNetworth().formatted} title={`Portfolio Value at age ${this.props.user.desiredRetirementAge}`}
+            hint="The total value of your investments at your desired retirement age."
+           />
 
-
+          <StatBox icon="piggy-bank" value={this.getMonthlyIncome()} title="Monthly income at retirement"
+            hint="How much of your investment portfolio you can safely withdraw at a 4% rate."
+           />
 
         </div>
       </div>
