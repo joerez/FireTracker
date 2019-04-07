@@ -20,6 +20,11 @@ body, html {
   // box-shadow: 1px 0px 4px rgba(0, 0, 0, 0.3);
   z-index: 10;
   border-bottom: solid 1px #bdc3c7;
+
+  .nav-brand {
+    margin-left: 2rem;
+    color: rgba(41, 128, 185,1.0) !important;
+  }
 }
 
 

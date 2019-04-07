@@ -26,7 +26,11 @@ class App extends Component {
         <BrowserRouter>
             <div>
               <Header />
-              <Route exact path="/" component={Landing} />
+              <Route exact path="/"
+                render={(routeProps) => (
+                  <Landing auth={this.props.auth} />
+                )}
+                />
               <Route exact path="/dashboard"
               render={(routeProps) => (
                   <Dashboard {...routeProps} auth={this.props.auth} getUser={() => this.props.fetchUser()} />
