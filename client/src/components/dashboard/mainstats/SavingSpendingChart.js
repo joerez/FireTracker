@@ -50,7 +50,7 @@ class SavingSpendingChart extends Component {
         datasets: [
           {
             data: [invested, saved, spent],
-            backgroundColor: ['rgba(241, 196, 15,1)', 'rgba(41, 128, 185,1)', 'rgba(39, 174, 96,1)'],
+            backgroundColor: ['rgba(41, 128, 185,1.0)', 'rgba(39, 174, 96,1)', 'rgba(231, 76, 60,1.0)'],
           }
         ]
       },
@@ -76,7 +76,7 @@ class SavingSpendingChart extends Component {
 
       percentSavedAndInvested = Math.floor((invested + saved) / takeHomePay * 100);
 
-      if (percentSavedAndInvested >= 20) {
+      if (percentSavedAndInvested >= 10) {
         return (
           <div className="rendered-math">
             <h3>Percentage Saved: <span className="good">{percentSavedAndInvested}%</span></h3>
@@ -86,7 +86,7 @@ class SavingSpendingChart extends Component {
         return (
           <div className="rendered-math">
             <h3>Percentage Saved: <span className="bad">{percentSavedAndInvested}%</span></h3>
-            <p>Aim to save 20% or more to be in the green!</p>
+            <p>Aim to save 10% or more to be in the green!</p>
           </div>
         )
       }
@@ -96,17 +96,20 @@ class SavingSpendingChart extends Component {
 
   render() {
     return (
-      <div className="smaller-graphs-container">
-        <h3>Monthly Saved vs Spent</h3>
+      <div>
+        <h3 className="center">Monthly <span className="green">Saved</span> & <span className="blue">Invested</span> vs <span className="red">Spent</span></h3>
 
-        <div className="doughnut-graph">
-          <canvas
-            id="bar"
-            ref={this.chartRef}
-          />
+        <div className="smaller-graphs-container">
+
+          <div className="doughnut-graph">
+            <canvas
+              id="bar"
+              ref={this.chartRef}
+            />
+          </div>
+
+          {this.renderMaths()}
         </div>
-
-        {this.renderMaths()}
       </div>
     )
   }
