@@ -95,17 +95,19 @@ class MonthlyStatisticsChart extends Component {
 
   render() {
     return (
-      <div className="smaller-graphs-container">
-        <h3>Monthly Statistics</h3>
+      <div>
+        <h3 className="center">Monthly Statistics</h3>
+        <div className="smaller-graphs-container">
 
-        <div className="graph-chart">
-          <canvas
-            id="myChart"
-            ref={this.chartRef}
-          />
+          <div className="graph-chart">
+            <canvas
+              id="myChart"
+              ref={this.chartRef}
+            />
+          </div>
+
+          <h3>You are on track for retirement!</h3>
         </div>
-
-        <h3>You are on track for retirement!</h3>
       </div>
     )
   }
