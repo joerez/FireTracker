@@ -61,18 +61,17 @@ class YearlyCompoundBars extends Component {
       options: {
         //Customize chart options
         layout: {},
-        scales: {
-          yAxes: [{
-            display: true,
-            ticks: {
-              suggestedMin: 50,    // minimum will be 0, unless there is a lower value.
-            }
-          }]
-        },
         tooltips: DefaultLabels,
         legend: {
             display: false
-          }
+          },
+          scales: {
+            xAxes: [{
+              gridLines: {
+                color: "rgba(0, 0, 0, 0)",
+              }
+            }],
+        }
       }
     })
 

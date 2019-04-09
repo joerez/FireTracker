@@ -78,8 +78,13 @@ class MonthlyStatisticsChart extends Component {
             ticks: {
               suggestedMin: 50,    // minimum will be 0, unless there is a lower value.
             }
-          }]
-        },
+          }],
+          xAxes: [{
+            gridLines: {
+              color: "rgba(0, 0, 0, 0)",
+            }
+          }],
+        },        
         tooltips: DefaultLabels,
         legend: {
           position: 'bottom',
