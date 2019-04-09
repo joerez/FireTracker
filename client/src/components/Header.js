@@ -9,17 +9,18 @@ class Header extends Component {
 
   state = {
     toggleDropDown: false,
-    menuHide: false
+    menuHide: false,
+    cogGear: false
   }
 
   toggleDropDown() {
     if (this.state.toggleDropDown) {
-      this.setState({menuHide: true});
+      this.setState({menuHide: true, cogGear: false});
       setTimeout(() => {
         this.setState({toggleDropDown: false, menuHide: false})
       }, 300)
     } else {
-      this.setState({toggleDropDown: true})
+      this.setState({toggleDropDown: true, cogGear: true})
     }
   }
 
@@ -35,11 +36,14 @@ class Header extends Component {
     //logged in
     return (
       <div className="nav-login">
-        <button onClick={() => this.toggleDropDown()} className="settings-btn"><i className="fas fa-cog"></i></button>
+        <button onClick={() => this.toggleDropDown()} className={`settings-btn ${this.state.cogGear ? 'turn' : ''}`}><i className="fas fa-cog"></i></button>
         {this.state.toggleDropDown ?
               <ClickOutHandler onClickOut={() => { if (this.state.toggleDropDown) {this.toggleDropDown()}}}>
                 <div className={`nav-drop-down ${this.state.menuHide ? 'hide' : ''}`}>
-                  <a href="/api/logout">Logout</a>
+                  <Link onClick={() => this.toggleDropDown()} className="drop-link" to="/">Home</Link>
+                  <Link onClick={() => this.toggleDropDown()} className="drop-link" to="/dashboard">Dashboard</Link>
+                  <Link onClick={() => this.toggleDropDown()} className="drop-link" to="/profile">Profile</Link>
+                  <a className="drop-link" href="/api/logout">Logout</a>
                 </div>
               </ClickOutHandler>
             : ''}
