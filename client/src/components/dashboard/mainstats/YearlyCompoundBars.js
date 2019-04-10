@@ -26,6 +26,7 @@ class YearlyCompoundBars extends Component {
   }
 
   ageChange(e) {
+    e.persist();
     setTimeout(() => {
       this.updateRetirement();
     }, 600)
@@ -107,13 +108,11 @@ class YearlyCompoundBars extends Component {
   }
 
   renderError() {
-
-      if (this.state.yearlyAge <= new Date().getFullYear() - this.props.auth.birthYear) {
-        return <Alert message="Error: Your retirement year is younger than you!" resetErrors={this.resetErrors}/>
-      } else {
-        return null
-      }
-
+    if (this.state.yearlyAge <= new Date().getFullYear() - this.props.auth.birthYear) {
+      return <Alert message="Error: Your retirement year is younger than you!" resetErrors={this.resetErrors}/>
+    } else {
+      return null
+    }
   }
 
   resetErrors() {
