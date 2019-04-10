@@ -70,7 +70,7 @@ class Dashboard extends Component {
           <div className="horizontal-charts">
             <MonthlyStatisticsChart auth={this.props.auth} getUser={this.props.getUser}/>
             <SavingSpendingChart auth={this.props.auth} />
-            <YearlyCompoundBars  getUser={this.props.getUser} auth={this.props.auth} />
+            <YearlyCompoundBars getUser={this.props.getUser} auth={this.props.auth} />
           </div>
         </div>
       )
