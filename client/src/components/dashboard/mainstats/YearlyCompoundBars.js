@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Chart from "chart.js";
 
 import { DefaultLabels } from './statsConfigs';
+import Alert from '../../alert/Alert';
+
 
 let myBarChart;
 
@@ -9,6 +12,32 @@ Chart.defaults.global.defaultFontFamily = "'PT Sans', sans-serif"
 Chart.defaults.global.elements.point.backgroundColor = 'white';
 
 class YearlyCompoundBars extends Component {
+  constructor(props) {
+    super(props)
+
+    this.updateRetirement = this.updateRetirement.bind(this);
+    this.resetErrors = this.resetErrors.bind(this);
+    this.renderRight = this.renderError.bind(this);
+  }
+
+  state = {
+    yearlyAge: this.props.auth.desiredRetirementAge,
+    message: ''
+  }
+
+  ageChange(e) {
+    setTimeout(() => {
+      this.updateRetirement();
+    }, 600)
+    this.setState({yearlyAge: e.target.value});
+  }
+
+  updateRetirement() {
+    axios.post('/api/user/retire-age', this.state).then((user) => {
+      this.props.getUser();
+    }).catch((err) => {
+    })
+  }
 
   chartRef = React.createRef();
 
@@ -35,7 +64,6 @@ class YearlyCompoundBars extends Component {
     }
     return newLabels;
   }
-
 
   buildChart() {
     // this.props.getUser();
@@ -65,12 +93,12 @@ class YearlyCompoundBars extends Component {
         legend: {
             display: false
           },
-          scales: {
-            xAxes: [{
-              gridLines: {
-                color: "rgba(0, 0, 0, 0)",
-              }
-            }],
+        scales: {
+          xAxes: [{
+            gridLines: {
+              color: "rgba(0, 0, 0, 0)",
+            }
+          }],
         }
       }
     })
@@ -78,12 +106,31 @@ class YearlyCompoundBars extends Component {
 
   }
 
+  renderError() {
+    if (this.state.message.length > 0) {
+      return <p>{this.state.message}</p>
+    }
+
+    if (this.state.yearlyAge <= new Date().getFullYear() - this.props.auth.birthYear) {
+      return (<p>bad year</p>)
+    } else {
+      return (<p></p>)
+    }
+  }
+
+  resetErrors() {
+    this.setState({message: ''});
+  }
+
+
   render() {
     return (
       <div className="graphs-container">
+        {this.renderError()}
         <h3>Yearly Retirement Data (8% Compounded Yearly)</h3>
-
-
+        <div className="year-change">
+          <input onChange={(e) => this.ageChange(e)} value={this.state.yearlyAge} />
+        </div>
           <canvas
             id="myChart"
             ref={this.chartRef}
