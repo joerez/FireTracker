@@ -107,15 +107,13 @@ class YearlyCompoundBars extends Component {
   }
 
   renderError() {
-    if (this.state.message.length > 0) {
-      return <p>{this.state.message}</p>
-    }
 
-    if (this.state.yearlyAge <= new Date().getFullYear() - this.props.auth.birthYear) {
-      return (<p>bad year</p>)
-    } else {
-      return (<p></p>)
-    }
+      if (this.state.yearlyAge <= new Date().getFullYear() - this.props.auth.birthYear) {
+        return <Alert message="Error: Your retirement year is younger than you!" resetErrors={this.resetErrors}/>
+      } else {
+        return null
+      }
+
   }
 
   resetErrors() {
@@ -129,7 +127,8 @@ class YearlyCompoundBars extends Component {
         {this.renderError()}
         <h3>Yearly Retirement Data (8% Compounded Yearly)</h3>
         <div className="year-change">
-          <input onChange={(e) => this.ageChange(e)} value={this.state.yearlyAge} />
+          <label>Retirement Year: </label>
+          <input type="number" onChange={(e) => this.ageChange(e)} value={this.state.yearlyAge} />
         </div>
           <canvas
             id="myChart"
