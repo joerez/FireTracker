@@ -77,7 +77,7 @@ module.exports = (passport, app, User) => {
       const currentYear = new Date().getFullYear()
 
       const opts = {
-        initial: parseInt(user.totalInvested),  
+        initial: parseInt(user.totalInvested),
         monthly: parseInt(user.monthlyInvested),
         interest: 8,
         compound: 1,
@@ -94,6 +94,33 @@ module.exports = (passport, app, User) => {
 
     }).catch((err) => {
       console.log(err);
+    })
+  })
+
+  app.post('/api/user/retire-age', (req, res) => {
+    User.findById(req.user._id).then((user) => {
+      console.log(user);
+      const currentYear = new Date().getFullYear()
+      console.log(req.body.yearlyAge)
+      user.desiredRetirementAge = req.body.yearlyAge;
+
+      const opts = {
+        initial: user.totalInvested,
+        monthly: user.monthlyInvested,
+        interest: 8,
+        compound: 1,
+        years: parseInt(user.desiredRetirementAge - (currentYear - user.birthYear))
+      };
+
+      user.yearlyRetirementData = [];
+      user.yearlyRetirementData = compound.verbose(opts);
+      user.save().then(() => {
+        res.send({status: 'success', message: 'Your account details have been saved!'});
+      }).catch((err) => {
+        console.log(err)
+      })
+    }).catch((err) => {
+      console.log(err)
     })
   })
 
