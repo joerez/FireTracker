@@ -33,9 +33,8 @@ class SavingSpendingChart extends Component {
     let takeHomePay = this.props.auth.takeHomePay;
     let invested = this.props.auth.monthlyInvested;
     let saved = this.props.auth.monthlySavings;
-    let spent = takeHomePay - invested - saved;
-
-    console.log(takeHomePay)
+    let debt = this.props.auth.monthlyDebtPayment;
+    let spent = takeHomePay - invested - saved - debt;
 
     const myOtherChart = this.chartRef.current.getContext("2d");
 
@@ -46,11 +45,11 @@ class SavingSpendingChart extends Component {
         type: "pie",
         height: 200,
         data: {
-        labels: [`Invested`, "Saved", "spent"],
+        labels: [`Invested`, "Saved", "Spent", "Debt"],
         datasets: [
           {
-            data: [invested, saved, spent],
-            backgroundColor: ['rgba(41, 128, 185,1.0)', 'rgba(39, 174, 96,1)', 'rgba(231, 76, 60,1.0)'],
+            data: [invested, saved, spent, debt],
+            backgroundColor: ['rgba(41, 128, 185,1.0)', 'rgba(39, 174, 96,1)', 'rgba(231, 76, 60,1.0)', 'rgba(241, 196, 15,1.0)'],
           }
         ]
       },
@@ -73,8 +72,9 @@ class SavingSpendingChart extends Component {
       let takeHomePay = this.props.auth.takeHomePay;
       let invested = this.props.auth.monthlyInvested;
       let saved = this.props.auth.monthlySavings;
+      let debt = this.props.auth.monthlyDebtPayment;
 
-      percentSavedAndInvested = Math.floor((invested + saved) / takeHomePay * 100);
+      percentSavedAndInvested = Math.floor((invested + saved - debt) / takeHomePay * 100);
 
       if (percentSavedAndInvested >= 10) {
         return (
