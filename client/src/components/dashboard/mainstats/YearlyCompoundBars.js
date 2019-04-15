@@ -129,11 +129,11 @@ class YearlyCompoundBars extends Component {
           <label>Retirement Year: </label>
           <input type="number" onChange={(e) => this.ageChange(e)} value={this.state.yearlyAge} />
         </div>
-          <canvas
-            id="myChart"
-            ref={this.chartRef}
-          />
 
+            <canvas
+              id="myChart"
+              ref={this.chartRef}
+            />
       </div>
     )
   }

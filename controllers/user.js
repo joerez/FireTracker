@@ -59,6 +59,8 @@ module.exports = (passport, app, User) => {
       user.location = req.body.location;
       user.birthYear = req.body.birthYear;
       user.desiredRetirementAge = req.body.desiredRetirementAge;
+      user.currentDebt = req.body.currentDebt;
+      user.monthlyDebtPayment = req.body.monthlyDebtPayment;
 
       user.monthlyInvestedData = req.body.monthlyInvestedData;
 

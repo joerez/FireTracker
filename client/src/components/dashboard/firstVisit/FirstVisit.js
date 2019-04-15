@@ -21,7 +21,9 @@ class FirstVisit extends Component {
       monthlyExpenses: user.monthlyExpenses,
       location: user.location,
       birthYear: user.birthYear,
-      desiredRetirementAge: user.desiredRetirementAge
+      desiredRetirementAge: user.desiredRetirementAge,
+      currentDebt: user.currentDebt,
+      monthlyDebtPayment: user.monthlyDebtPayment
     }
 
     this.handleName = this.handleName.bind(this);
@@ -132,6 +134,19 @@ class FirstVisit extends Component {
               <input name="monthlyExpenses" placeholder="1500" onChange={this.handleInputChange} value={this.state.monthlyExpenses} />
             </div>
 
+
+          </div>
+
+          <div className="form-group">
+            <div className="input-group">
+              <label>Current Debt</label>
+              <input name="currentDebt" placeholder="15000" onChange={this.handleInputChange} value={this.state.currentDebt} />
+            </div>
+
+            <div className="input-group">
+              <label>Monthly Debt Payment</label>
+              <input type="text" name="monthlyDebtPayment" placeholder="200" onChange={this.handleInputChange} value={this.state.monthlyDebtPayment} />
+            </div>
 
           </div>
 

@@ -6,6 +6,8 @@ import SideNav from '../sidenav/SideNav';
 import FirstVisit from './firstVisit/FirstVisit';
 import MainStats from './mainstats/MainStats';
 import MonthlyStatisticsChart from './mainstats/MonthlyStatisticsChart';
+import DebtChart from './mainstats/DebtChart';
+import NoDebt from './mainstats/NoDebt';
 import SavingSpendingChart from './mainstats/SavingSpendingChart';
 import YearlyCompoundBars from './mainstats/YearlyCompoundBars';
 
@@ -13,21 +15,21 @@ class Dashboard extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      updateDetails: this.props.auth.firstVisit,
-      message: '',
-    }
-
-
+      this.state = {
+        updateDetails: this.props.auth.firstVisit,
+        message: '',
+        debtFree: false
+      }
 
     this.detailsUpdated = this.detailsUpdated.bind(this);
     this.toggleDetails = this.toggleDetails.bind(this);
     this.resetErrors = this.resetErrors.bind(this);
+    this.updateDebt = this.updateDebt.bind(this);
   }
-
 
   renderError() {
     if (this.state.message) {
+
       return <Alert message={this.state.message} resetErrors={this.resetErrors}/>
     }
   }
@@ -62,15 +64,23 @@ class Dashboard extends Component {
     }
   }
 
+  updateDebt() {
+    if (!this.props.auth.currentDebt === 0) {
+      this.setState({debtFree: false})
+    }
+  }
+
   renderUserDash() {
+
     if (this.props.auth.email) {
       return (
         <div>
           <MainStats user={this.props.auth}/>
           <div className="horizontal-charts">
-            <MonthlyStatisticsChart auth={this.props.auth} getUser={this.props.getUser}/>
             <SavingSpendingChart auth={this.props.auth} />
+            {this.props.auth.currentDebt === 0 ? <NoDebt /> : <DebtChart auth={this.props.auth} /> }
             <YearlyCompoundBars getUser={this.props.getUser} auth={this.props.auth} />
+            <MonthlyStatisticsChart auth={this.props.auth} getUser={this.props.getUser}/>
           </div>
         </div>
       )
@@ -90,6 +100,9 @@ class Dashboard extends Component {
         <div className="dashboard">
           {this.renderError()}
           {this.renderUpdateDetails()}
+          {
+            this.updateDebt()
+          }
 
 
           <div className="dashboard-modules">

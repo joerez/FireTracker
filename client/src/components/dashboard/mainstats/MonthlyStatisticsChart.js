@@ -31,6 +31,7 @@ class MonthlyStatisticsChart extends Component {
 
     myLineChart = new Chart(myChartRef, {
       type: "line",
+      maintainAspectRatio: false,
       data: {
         //Bring in data
         labels: ["April", "May", "June", "July", "August", "September", "October", "November", "December", "January"],
@@ -84,7 +85,7 @@ class MonthlyStatisticsChart extends Component {
               color: "rgba(0, 0, 0, 0)",
             }
           }],
-        },        
+        },
         tooltips: DefaultLabels,
         legend: {
           position: 'bottom',
@@ -101,16 +102,12 @@ class MonthlyStatisticsChart extends Component {
   render() {
     return (
       <div>
-        <h3 className="center">Monthly Statistics</h3>
-        <div className="smaller-graphs-container">
-
-          <div className="graph-chart">
-            <canvas
-              id="myChart"
-              ref={this.chartRef}
-            />
-          </div>
-
+        <div className="graphs-container">
+          <h3>Monthly Statistics</h3>
+          <canvas
+            id="myChart"
+            ref={this.chartRef}
+          />
           <h3>You are on track for retirement!</h3>
         </div>
       </div>
