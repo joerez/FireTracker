@@ -100,7 +100,7 @@ class DebtChart extends Component {
           />
 
           <h3>You will be <span className="green">Debt Free</span> in <span className="green">9</span> months!</h3>
-
+          <p>(This chart is under construction)</p>
 
         </div>
       </div>
