@@ -75,6 +75,7 @@ module.exports = (passport, app, User) => {
       user.monthlyRetirementData = user.monthlyNetworthData.map((monthlyNetworth) => {
         return Math.floor(monthlyNetworth *= .04);
       })
+      user.debtFreeData = getDebtFreeData(user.currentDebt, user.monthlyDebtPayment)
 
       const currentYear = new Date().getFullYear()
 
@@ -138,6 +139,15 @@ module.exports = (passport, app, User) => {
     }
 
     return monthlySavingsData;
+  }
+
+  function getDebtFreeData(currentDebt, debtPayment) {
+    let debtData = [];
+    while (currentDebt > 0) {
+      currentDebt -= debtPayment;
+      debtData.push(currentDebt)
+    }
+    return debtData;
   }
 
   function getUserNetworthData(prevValues, newValues, savings, monthlyInvestments, currentInvestments) {

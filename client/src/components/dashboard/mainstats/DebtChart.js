@@ -41,19 +41,24 @@ class DebtChart extends Component {
       const myChartRef = this.chartRef.current.getContext("2d");
 
       if (typeof myLineChart !== "undefined") myLineChart.destroy();
-
+      let labels = [];
+      let labelValue = 1;
+      this.props.auth.debtFreeData.forEach(() => {
+        labels.push('Month: ' + labelValue)
+        labelValue += 1;
+      })
 
       myLineChart = new Chart(myChartRef, {
         type: "line",
         maintainAspectRatio: false,
         data: {
           //Bring in data
-          labels: ["April", "May", "June", "July", "August", "September", "October", "November", "December", "January"],
+          labels: labels,
           datasets: [
             {
               label: "Retirement Income",
-              data: this.props.auth.monthlyRetirementData,
-              backgroundColor: 'rgba(241, 196, 15,.2)',
+              data: this.props.auth.debtFreeData,
+              backgroundColor: 'rgba(241, 196, 15,.4)',
               pointBackgroundColor: 'white',
               pointBorderColor: 'rgba(241, 196, 15,1)',
               borderColor: 'rgba(241, 196, 15,.8)'
@@ -98,9 +103,7 @@ class DebtChart extends Component {
           <canvas id="myChart"
             ref={this.chartRef}
           />
-
-          <h3>You will be <span className="green">Debt Free</span> in <span className="green">9</span> months!</h3>
-          <p>(This chart is under construction)</p>
+          <h3>You will be <span className="green">Debt Free</span> in <span className="green">{this.props.auth.debtFreeData.length}</span> months!</h3>
 
         </div>
       </div>

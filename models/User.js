@@ -32,7 +32,8 @@ const userSchema = new Schema({
   monthlyRetirementData: Array,
   yearlyRetirementData: Array,
   currentDebt: Number,
-  monthlyDebtPayment: Number
+  monthlyDebtPayment: Number,
+  debtFreeData: Array
 });
 
 const User = mongoose.model('User', userSchema);
